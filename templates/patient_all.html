@@ -43,6 +43,7 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Zip Code</th>
+                        <th>Phone Number</th>
                         <th>Gender</th>
                         <th>Setting</th>
 
@@ -56,6 +57,7 @@
                         <td>{{row.first_name}}</td>
                         <td>{{row.last_name}}</td>
                         <td>{{row.zip_code}} </td>
+                        <td>{{row.phone_number}}</td>
                         <td>{{row.gender}}</td>
                         <td>
                             <a href="/update/{{row.mrn}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.mrn}}">Edit</a>
@@ -89,6 +91,14 @@
                                 <div class="form-group">
                                     <label>Last name:</label>
                                     <input type="text" class="form-control" name="last_name" value="{{row.last_name}}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Zip Code:</label>
+                                    <input type="text" class="form-control" name="zip_code" value="{{row.zip_code}}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone Number:</label>
+                                    <input type="text" class="form-control" name="phone_number" value="{{row.phone_number}}">
                                 </div>
                                 <div class="form-group">
                                     <label>Gender:</label>
