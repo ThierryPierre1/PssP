@@ -67,12 +67,12 @@ for index, row in ndc_codes_1k.iterrows():
 ########################## PATIENT MEDICATION TABLE #############################
 
 
-df_medications = pd.read_sql_query("SELECT med_ndc FROM medications", engine) 
+df_medications = pd.read_sql_query("SELECT med_ndc, med_human_name FROM medications", engine) 
 df_patients = pd.read_sql_query("SELECT mrn FROM patients", engine)
 
 
 # create a dataframe that is stacked and give each patient a random number of medications between 1 and 5
-df_patient_medications = pd.DataFrame(columns=['mrn', 'med_ndc'])
+df_patient_medications = pd.DataFrame(columns=['mrn', 'med_ndc', 'med_human_name'])
 # for each patient in df_patient_medications, take a random number of medications between 1 and 10 from df_medications and palce it in df_patient_medications
 for index, row in df_patients.iterrows():
     # get a random number of medications between 1 and 5
@@ -87,10 +87,10 @@ df_patient_medications = df_patient_medications.append(df_medications_sample)
 print(df_patient_medications.head(10))
 
 # now lets add a random medication to each patient
-insertQuery = "INSERT INTO patient_medications (mrn, med_ndc) VALUES (%s, %s)"
+insertQuery = "INSERT INTO patient_medications (mrn, med_ndc, med_human_name) VALUES (%s, %s, %s)"
 
 for index, row in df_patient_medications.iterrows():
-    engine.execute(insertQuery, (row['mrn'], row['med_ndc']))
+    engine.execute(insertQuery, (row['mrn'], row['med_ndc'], row['med_human_name']))
     print("inserted row: ", index)
 
 ######################ICD10 codes CONDITIONS ###########################
